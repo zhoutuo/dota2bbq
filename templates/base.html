@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/jquery-ui-1.9.1.custom.min.css">
+    <script src="../static/jquery-1.8.2.min.js"></script>
+    <script src="../static/jquery-ui-1.9.1.custom.min.js"></script>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/heroes">Heroes</a></li>
+            <li><a href="/items">Items</a></li>
+            <li><a href="" id="isEditable">Edit</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+
+</body>
+</html>

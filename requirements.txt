@@ -1,0 +1,7 @@
+Flask==0.9
+Flask-DebugToolbar==0.7.1
+Jinja2==2.6
+Werkzeug==0.8.3
+blinker==1.2
+flask-sqlalchemy==0.16
+sqlalchemy==0.7.9

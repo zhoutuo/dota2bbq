@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title%}{{Name}}{% endblock %}
+{% block content %}
+    <div class="hero">
+        <div class="hero_basic">
+            <div class="hero_card">
+                <table>
+                    <tr><td colspan="2" class="hero_name" id="hero_name">{{Name}}</td></tr>
+                    <tr><td colspan="2"> <img src="../static/images/{{Name}}.png" width="256px" height="144px"></td></tr>
+                    <tr>
+                        <td>Faction</td>
+                        <td><span class="hero_fac">{{Faction}}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Primary Attribute</td>
+                        <td><span class="hero_prim">{{Class}}</span></td>
+                    </tr>
+                </table>
+                <table class="stat_table">
+                    <tr class="hero_attr">
+                        <td><img src="../static/images/33px-Icon_Str.png" width="33" height="33" title="Strength"></td>
+                        <td><img src="../static/images/33px-Icon_Agi.png" width="33" height="33" title="Agility"></td>
+                        <td><img src="../static/images/33px-Icon_Int.png" width="33" height="33" title="Intelligence"></td>
+                    </tr>
+                    <tr>
+                        <td id="hero_str">{{BasicStr}} + {{StrInc}}</td>
+                        <td id="hero_agi">{{BasicAgi}} + {{AgiInc}}</td>
+                        <td id="hero_int">{{BasicInt}} + {{IntInc}}</td>
+                    </tr>
+                    <tr class="hero_attr">
+                        <td><img src="../static/images/33px-Icon_Dmg.png" width="46" height="35" title="Damage"></td>
+                        <td><img src="../static/images/33px-Icon_Armor.png" width="39" height="37" title="Armor"></td>
+                        <td><img src="../static/images/33px-Icon_Mov.png" width="63" height="39" title="Movement"></td>
+                    </tr>
+                    <tr>
+                        <td id="hero_dmg">{{MinDamage}} ~ {{MaxDamage}}</td>
+                        <td id="hero_armor">{{Armor}}</td>
+                        <td>{{Movement}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="hero_lore">
+                <h2>Lore</h2>
+                <p>{{Lore}}</p>
+            </div>
+        </div>
+
+        <div class="hero_skills">
+            <div id="skill_tabs">
+                <ul>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+<script type="text/javascript" src="../static/hero.js"></script>
+{% endblock %}

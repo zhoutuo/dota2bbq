@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			window.onload = function(){
+				var tmp = document.getElementById("Faction");
+				document.getElementById("Faction_Select").value = tmp.value;
+				tmp = document.getElementById("PrimaryAttr");
+				document.getElementById("PrimaryAttr_Select").value = tmp.value;
+
+				generateSkillSlots(4);
+			};
+
+			function update(){
+				document.getElementById("Faction").value = document.getElementById("Faction_Select").value;
+				document.getElementById("PrimaryAttr").value = document.getElementById("PrimaryAttr_Select").value;
+				return true;
+			}
+			
+			function generateSkillSlots(number){
+				var skill_slots = document.getElementById("skill_slots");
+				skill_slots.innerHTML = "";
+				for(i = 1; i <= number; ++i){
+					var tmpDiv = document.createElement("div");
+					tmpDiv.setAttribute("id", "skill" + i);
+
+					//skill name
+					var name_label = document.createElement("label");
+					name_label.innerHTML = "Skill Name";
+					var name_input = document.createElement("input");
+					name_input.setAttribute("name", "skill" + i + "_name")
+					tmpDiv.appendChild(name_label);
+					tmpDiv.appendChild(name_input);
+
+					//skill description
+					var desc_label = document.createElement("label");
+					desc_label.innerHTML = "Description Name";
+					var desc_input = document.createElement("textarea");
+					desc_input.setAttribute("name", "skill" + i + "_desc");
+					tmpDiv.appendChild(desc_label);
+					tmpDiv.appendChild(desc_input);
+
+					//skill type
+					var type_label = document.createElement("label");
+					type_label.innerHTML = "Type";
+					var type_input = document.createElement("select");
+					type_input.setAttribute("name", "skill" + i + "_type");
+					var type_option_active = document.createElement("option");
+					type_option_active.value = "1";
+					type_option_active.innerHTML = "Active";
+
+					var type_option_passive = document.createElement("option");
+					type_option_passive.value = "0";
+					type_option_passive.innerHTML = "Passive";
+
+					type_input.appendChild(type_option_active);
+					type_input.appendChild(type_option_passive);
+					
+					tmpDiv.appendChild(type_label);
+					tmpDiv.appendChild(type_input);
+
+					//skill manacost
+					var mana_label = document.createElement("label");
+					mana_label.innerHTML = "ManaCost";
+					var mana_input = document.createElement("input");
+					mana_input.setAttribute("name", "skill" + i + "_manacost");
+
+					tmpDiv.appendChild(mana_label);
+					tmpDiv.appendChild(mana_input);
+
+					//skill cooldown
+					var cd_label = document.createElement("label");
+					cd_label.innerHTML = "Cooldown";
+					var cd_input = document.createElement("input");
+					cd_input.setAttribute("name", "skill" + i + "_cooldown");
+
+					tmpDiv.appendChild(cd_label);
+					tmpDiv.appendChild(cd_input);
+
+					skill_slots.appendChild(tmpDiv);
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+		<form id="input" method="post" onsubmit="return update()">
+			<label>Hero Name</label>
+			<input name="Name" value="{{Name}}" readonly><br>
+			<label>Faction</label>
+			<select id="Faction_Select">
+				<option value="0">Radiant</option>
+				<option value="1">Dire</option>
+			</select><input id="Faction" name="Faction" type="hidden" value="{{Faction}}">
+			<br>
+			<label>Primary Attribute</label>
+			<select id="PrimaryAttr_Select">
+				<option value="0">Strength</option>
+				<option value="1">Agility</option>
+				<option value="2">Intelligence</option>
+			</select><input id="PrimaryAttr" name="Class" type="hidden" value="{{Class}}">
+			<br>
+			<label>Lore</label>
+			<textarea name="Lore" rows="10" cols="100">{{Lore}}</textarea>
+			<br>
+			<label>Basic Strength</label>
+			<input name="BasicStr" value="{{BasicStr}}"><br>
+			<label>Basic Agility</label>
+			<input name="BasicAgi" value="{{BasicAgi}}"><br>
+			<label>Basic Intelligence</label>
+			<input name="BasicInt" value="{{BasicInt}}"><br>
+			<label>Strength Increase</label>
+			<input name="StrInc" value="{{StrInc}}"><br>
+			<label>Agility Increase</label>
+			<input name="AgiInc" value="{{AgiInc}}"><br>
+			<label>Intelligence Increase</label>
+			<input name="IntInc" value="{{IntInc}}"><br>
+			<label>Movement</label>
+			<input name="Movement" value="{{Movement}}"><br>
+			<label>Armor</label>
+			<input name="Armor" value="{{Armor}}"><br>
+			<label>Minimum Damage</label>
+			<input name="MinDamage" value="{{MinDamage}}"><br>
+			<label>Maximum Damage</label>
+			<input name="MaxDamage" value="{{MaxDamage}}"><br>
+			<input name="IsNew" type="hidden" value="{{IsNew}}">
+
+			<select id="skill_number" onchange="generateSkillSlots(this.value)">
+				<option value="4" selected>4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>
+
+			<div id="skill_slots"></div>
+
+			<input type="submit">
+		</form>
+	</body>
+</html>
