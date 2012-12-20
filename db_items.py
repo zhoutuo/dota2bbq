@@ -12,8 +12,10 @@ for index in json_object:
 	c.execute("SELECT * FROM Items WHERE Name = ?", (item['dname'], ))
 	if c.fetchone() == None:
 		recipe = '/'.join([(json_object[component]['dname'] if json_object.has_key(component) else "Recipe") for component in item['components']]) if item['components'] else None
+		attrs = '/'.join(["MANACOST: " + str(item['mc']), "COOLDOWN: " + str(item['cd'])]) if item['mc'] != False else None
+			
 		c.execute("""
-			INSERT INTO Items(Name, Description, Cost, Usage, Recipe)
-			VALUES(?, ?, ?, ?, ?)
-		""", (item['dname'], item['lore'], item['cost'], item['desc'], recipe))
+			INSERT INTO Items(Name, Description, Cost, Usage, Attributes, Recipe)
+			VALUES(?, ?, ?, ?, ?, ?)
+		""", (item['dname'], item['lore'], item['cost'], item['desc'], attrs, recipe))
 		conn.commit()
