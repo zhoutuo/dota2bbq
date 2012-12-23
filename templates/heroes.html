@@ -1,165 +1,177 @@
 {% extends "base.html" %}
 {% block title %}Heroes{% endblock %}
 {% block content %}
-    <div id="hero_browse">
-        <div class="faction">
+    <div id="hero_browse" class='row-fluid'>
+        <div class="faction span6">
             <h2>The Radiant</h2>
-            <table id="radiant_strength">
+            <div id="radiant_strength">
                 <h3>Strength</h3>
-                <tr>
-                    <td><a href="/hero/Earthshaker"><img src="../static/images/80px-Earthshaker.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Sven"><img src="../static/images/80px-Sven.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Tiny"><img src="../static/images/80px-Tiny.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Kunkka"><img src="../static/images/80px-Kunkka.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Beastmaster"><img src="../static/images/80px-Beastmaster.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Dragon Knight"><img src="../static/images/80px-Dragon_Knight.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Clockwerk"><img src="../static/images/80px-Clockwerk.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Omniknight"><img src="../static/images/80px-Omniknight.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Huskar"><img src="../static/images/80px-Huskar.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Alchemist"><img src="../static/images/80px-Alchemist.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Brewmaster"><img src="../static/images/80px-Brewmaster.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Treant Protector"><img src="../static/images/80px-Treant_Protector.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Wisp"><img src="../static/images/80px-Wisp.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Centaur Warrunner"><img src="../static/images/80px-Centaur_Warrunner.png" height="45" width="80"></a></td>
-                </tr>
-            </table>
+                <div class='row-fluid'><div class='box-top span12'></div></div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Earthshaker"><img src="/static/images/80px-Earthshaker.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Sven"><img src="/static/images/80px-Sven.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Tiny"><img src="/static/images/80px-Tiny.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Kunkka"><img src="/static/images/80px-Kunkka.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Beastmaster"><img src="/static/images/80px-Beastmaster.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Dragon Knight"><img src="/static/images/80px-Dragon_Knight.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Clockwerk"><img src="/static/images/80px-Clockwerk.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Omniknight"><img src="/static/images/80px-Omniknight.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Huskar"><img src="/static/images/80px-Huskar.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Alchemist"><img src="/static/images/80px-Alchemist.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Brewmaster"><img src="/static/images/80px-Brewmaster.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Treant Protector"><img src="/static/images/80px-Treant_Protector.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Wisp"><img src="/static/images/80px-Wisp.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Centaur Warrunner"><img src="/static/images/80px-Centaur_Warrunner.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'><div class='box-bot span12'></div></div>
+            </div>
 
-
-            <table id="radiant_agility">
+            <div id="radiant_agility">
                 <h3>Agility</h3>
-                <tr>
-                    <td><a href="/hero/Anti-Mage"><img src="../static/images/80px-Anti-Mage.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Drow Ranger"><img src="../static/images/80px-Drow_Ranger.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Juggernaut"><img src="../static/images/80px-Juggernaut.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Mirana"><img src="../static/images/80px-Mirana.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Morphling"><img src="../static/images/80px-Morphling.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Phantom Lancer"><img src="../static/images/80px-Phantom_Lancer.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Vengeful Spirit"><img src="../static/images/80px-Vengeful_Spirit.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Riki"><img src="../static/images/80px-Riki.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Sniper"><img src="../static/images/80px-Sniper.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Templar Assassin"><img src="../static/images/80px-Templar_Assassin.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Luna"><img src="../static/images/80px-Luna.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Bounty Hunter"><img src="../static/images/80px-Bounty_Hunter.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Ursa"><img src="../static/images/80px-Ursa.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Gyrocopter"><img src="../static/images/80px-Gyrocopter.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Lone Druid"><img src="../static/images/80px-Lone_Druid.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Naga Siren"><img src="../static/images/80px-Naga_Siren.png" height="45" width="80"></a></td>
-                </tr>
-            </table>
-            <table id="radiant_intelligence">
+                <div class='row-fluid'><div class='box-top span12'></div></div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Anti-Mage"><img src="/static/images/80px-Anti-Mage.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Drow Ranger"><img src="/static/images/80px-Drow_Ranger.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Juggernaut"><img src="/static/images/80px-Juggernaut.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Mirana"><img src="/static/images/80px-Mirana.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Morphling"><img src="/static/images/80px-Morphling.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Phantom Lancer"><img src="/static/images/80px-Phantom_Lancer.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Vengeful Spirit"><img src="/static/images/80px-Vengeful_Spirit.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Riki"><img src="/static/images/80px-Riki.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Sniper"><img src="/static/images/80px-Sniper.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Templar Assassin"><img src="/static/images/80px-Templar_Assassin.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Luna"><img src="/static/images/80px-Luna.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Bounty Hunter"><img src="/static/images/80px-Bounty_Hunter.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Ursa"><img src="/static/images/80px-Ursa.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Gyrocopter"><img src="/static/images/80px-Gyrocopter.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Lone Druid"><img src="/static/images/80px-Lone_Druid.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Naga Siren"><img src="/static/images/80px-Naga_Siren.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'><div class='box-bot span12'></div></div>
+            </div>
+            
+            <div id="radiant_intelligence">
                 <h3>Intelligence</h3>
-                <tr>
-                    <td><a href="/hero/Crystal Maiden"><img src="../static/images/80px-Crystal_Maiden.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Puck"><img src="../static/images/80px-Puck.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Storm Spirit"><img src="../static/images/80px-Storm_Spirit.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Windrunner"><img src="../static/images/80px-Windrunner.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Zeus"><img src="../static/images/80px-Zeus.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Lina"><img src="../static/images/80px-Lina.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Shadow Shaman"><img src="../static/images/80px-Shadow_Shaman.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Enchantress"><img src="../static/images/80px-Enchantress.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Nature's Prophet"><img src="../static/images/80px-Nature's_Prophet.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Tinker"><img src="../static/images/80px-Tinker.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Jakiro"><img src="../static/images/80px-Jakiro.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Chen"><img src="../static/images/80px-Chen.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Silencer"><img src="../static/images/80px-Silencer.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Ogre Magi"><img src="../static/images/80px-Ogre_Magi.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Rubick"><img src="../static/images/80px-Rubick.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Disruptor"><img src="../static/images/80px-Disruptor.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Keeper of the Light"><img src="../static/images/80px-Keeper_of_the_Light.png" height="45" width="80"></a></td>
-                </tr>
-            </table>
+                <div class='row-fluid'><div class='box-top span12'></div></div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Crystal Maiden"><img src="/static/images/80px-Crystal_Maiden.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Puck"><img src="/static/images/80px-Puck.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Storm Spirit"><img src="/static/images/80px-Storm_Spirit.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Windrunner"><img src="/static/images/80px-Windrunner.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Zeus"><img src="/static/images/80px-Zeus.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Lina"><img src="/static/images/80px-Lina.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Shadow Shaman"><img src="/static/images/80px-Shadow_Shaman.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Enchantress"><img src="/static/images/80px-Enchantress.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Nature's Prophet"><img src="/static/images/80px-Nature's_Prophet.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Tinker"><img src="/static/images/80px-Tinker.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Jakiro"><img src="/static/images/80px-Jakiro.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Chen"><img src="/static/images/80px-Chen.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Silencer"><img src="/static/images/80px-Silencer.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Ogre Magi"><img src="/static/images/80px-Ogre_Magi.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Rubick"><img src="/static/images/80px-Rubick.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Disruptor"><img src="/static/images/80px-Disruptor.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Keeper of the Light"><img src="/static/images/80px-Keeper_of_the_Light.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'><div class='box-bot span12'></div></div>
+            </div>
         </div>
-        <div class="faction">
+        <div class="faction span6">
             <h2>The Dire</h2>
-            <table id="dire_strength">
+            <div id="dire_strength">
                 <h3>Strength</h3>
-                <tr>
-                    <td><a href="/hero/Axe"><img src="../static/images/80px-Axe.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Pudge"><img src="../static/images/80px-Pudge.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Sand King"><img src="../static/images/80px-Sand_King.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Slardar"><img src="../static/images/80px-Slardar.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Tidehunter"><img src="../static/images/80px-Tidehunter.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Skeleton King"><img src="../static/images/80px-Skeleton_King.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Lifestealer"><img src="../static/images/80px-Lifestealer.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Night Stalker"><img src="../static/images/80px-Night_Stalker.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Doom Bringer"><img src="../static/images/80px-Doom_Bringer.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Spirit Breaker"><img src="../static/images/80px-Spirit_Breaker.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Lycanthrope"><img src="../static/images/80px-Lycanthrope.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Chaos Knight"><img src="../static/images/80px-Chaos_Knight.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Undying"><img src="../static/images/80px-Undying.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Magnus"><img src="../static/images/80px-Magnus.png" height="45" width="80"></a></td>
-                </tr>
-            </table>
-            <table id="dire_agility">
+                <div class='row-fluid'><div class='box-top span12'></div></div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Axe"><img src="/static/images/80px-Axe.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Pudge"><img src="/static/images/80px-Pudge.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Sand King"><img src="/static/images/80px-Sand_King.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Slardar"><img src="/static/images/80px-Slardar.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Tidehunter"><img src="/static/images/80px-Tidehunter.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Skeleton King"><img src="/static/images/80px-Skeleton_King.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Lifestealer"><img src="/static/images/80px-Lifestealer.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Night Stalker"><img src="/static/images/80px-Night_Stalker.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Doom Bringer"><img src="/static/images/80px-Doom_Bringer.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Spirit Breaker"><img src="/static/images/80px-Spirit_Breaker.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Lycanthrope"><img src="/static/images/80px-Lycanthrope.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Chaos Knight"><img src="/static/images/80px-Chaos_Knight.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Undying"><img src="/static/images/80px-Undying.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Magnus"><img src="/static/images/80px-Magnus.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'><div class='box-bot span12'></div></div>
+            </div>
+            <div id="dire_agility">
                 <h3>Agility</h3>
-                <tr>
-                    <td><a href="/hero/Bloodseeker"><img src="../static/images/80px-Bloodseeker.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Shadow Fiend"><img src="../static/images/80px-Shadow_Fiend.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Razor"><img src="../static/images/80px-Razor.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Venomancer"><img src="../static/images/80px-Venomancer.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Faceless Void"><img src="../static/images/80px-Faceless_Void.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Phantom Assassin"><img src="../static/images/80px-Phantom_Assassin.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Viper"><img src="../static/images/80px-Viper.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Clinkz"><img src="../static/images/80px-Clinkz.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Broodmother"><img src="../static/images/80px-Broodmother.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Weaver"><img src="../static/images/80px-Weaver.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Spectre"><img src="../static/images/80px-Spectre.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Meepo"><img src="../static/images/80px-Meepo.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Nyx Assassin"><img src="../static/images/80px-Nyx_Assassin.png" height="45" width="80"></a></td>
-                </tr>
-            </table>
-            <table id="dire_intelligence">
+                <div class='row-fluid'><div class='box-top span12'></div></div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Bloodseeker"><img src="/static/images/80px-Bloodseeker.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Shadow Fiend"><img src="/static/images/80px-Shadow_Fiend.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Razor"><img src="/static/images/80px-Razor.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Venomancer"><img src="/static/images/80px-Venomancer.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Faceless Void"><img src="/static/images/80px-Faceless_Void.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Phantom Assassin"><img src="/static/images/80px-Phantom_Assassin.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Viper"><img src="/static/images/80px-Viper.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Clinkz"><img src="/static/images/80px-Clinkz.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Broodmother"><img src="/static/images/80px-Broodmother.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Weaver"><img src="/static/images/80px-Weaver.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Spectre"><img src="/static/images/80px-Spectre.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Meepo"><img src="/static/images/80px-Meepo.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Nyx Assassin"><img src="/static/images/80px-Nyx_Assassin.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'><div class='box-bot span12'></div></div>
+            </div>
+            <div id="dire_intelligence">
                 <h3>Intelligence</h3>
-                <tr>
-                    <td><a href="/hero/Bane"><img src="../static/images/80px-Bane.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Lich"><img src="../static/images/80px-Lich.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Lion"><img src="../static/images/80px-Lion.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Witch Doctor"><img src="../static/images/80px-Witch_Doctor.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Enigma"><img src="../static/images/80px-Enigma.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Necrolyte"><img src="../static/images/80px-Necrolyte.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Warlock"><img src="../static/images/80px-Warlock.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Queen of Pain"><img src="../static/images/80px-Queen_of_Pain.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Death Prophet"><img src="../static/images/80px-Death_Prophet.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Pugna"><img src="../static/images/80px-Pugna.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Dazzle"><img src="../static/images/80px-Dazzle.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Leshrac"><img src="../static/images/80px-Leshrac.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Dark Seer"><img src="../static/images/80px-Dark_Seer.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Batrider"><img src="../static/images/80px-Batrider.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Ancient Apparition"><img src="../static/images/80px-Ancient_Apparition.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Invoker"><img src="../static/images/80px-Invoker.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Outworld Destroyer"><img src="../static/images/80px-Outworld_Destroyer.png" height="45" width="80"></a></td>
-                    <td><a href="/hero/Shadow Demon"><img src="../static/images/80px-Shadow_Demon.png" height="45" width="80"></a></td>
-                </tr>
-                <tr>
-                    <td><a href="/hero/Visage"><img src="../static/images/80px-Visage.png" height="45" width="80"></a></td>
-                </tr>
-            </table>
+                <div class='row-fluid'><div class='box-top span12'></div></div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Bane"><img src="/static/images/80px-Bane.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Lich"><img src="/static/images/80px-Lich.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Lion"><img src="/static/images/80px-Lion.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Witch Doctor"><img src="/static/images/80px-Witch_Doctor.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Enigma"><img src="/static/images/80px-Enigma.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Necrolyte"><img src="/static/images/80px-Necrolyte.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Warlock"><img src="/static/images/80px-Warlock.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Queen of Pain"><img src="/static/images/80px-Queen_of_Pain.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Death Prophet"><img src="/static/images/80px-Death_Prophet.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Pugna"><img src="/static/images/80px-Pugna.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Dazzle"><img src="/static/images/80px-Dazzle.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Leshrac"><img src="/static/images/80px-Leshrac.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Dark Seer"><img src="/static/images/80px-Dark_Seer.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Batrider"><img src="/static/images/80px-Batrider.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Ancient Apparition"><img src="/static/images/80px-Ancient_Apparition.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Invoker"><img src="/static/images/80px-Invoker.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Outworld Destroyer"><img src="/static/images/80px-Outworld_Destroyer.png" height="45" width="80"></a></div>
+                    <div class='span2'><a href="/hero/Shadow Demon"><img src="/static/images/80px-Shadow_Demon.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'>
+                    <div class='span2'><a href="/hero/Visage"><img src="/static/images/80px-Visage.png" height="45" width="80"></a></div>
+                </div>
+                <div class='row-fluid'><div class='box-bot span12'></div></div>
+            </div>
         </div>
     </div>
 
-    <script type="text/javascript" src="../static/heroes.js"></script>
+    <script type="text/javascript" src="/static/js/heroes.js"></script>
 {% endblock %}

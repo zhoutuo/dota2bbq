@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	$(".nav").eq(0).children('li').removeClass('active').eq(4).addClass('active');
+
 	var hash = null;
 	if(window.location.hash)
 	{

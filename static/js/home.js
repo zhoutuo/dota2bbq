@@ -1,6 +1,8 @@
 $(document).ready(function() {
-    $.getJSON("/ajax/combined", function(data){
 
+    $(".nav").eq(0).children('li').removeClass('active').eq(0).addClass('active');
+
+    $.getJSON("/ajax/combined", function(data){
     $( "#search_input" ).autocomplete({
         minLength:2,
         delay:500,
