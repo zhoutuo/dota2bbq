@@ -2,6 +2,23 @@ $(document).ready(function() {
 	//shows the "EDIT" button in the navigation bar
 	$("#isEditable").attr("href", $(location).attr('href') + '/_edit').css("visibility", "visible");
 
+	$hero_lore_para = $('#hero_lore_para');
+	var hero_lore_content = $hero_lore_para.html();
+	if(hero_lore_content.length > 1000)
+	{
+
+		$('#hero_full_story').modal('hide').find('p').eq(0).html(hero_lore_content);
+
+		$hero_lore_para
+		.html(hero_lore_content.substr(0, 1000) + '......')
+		.attr('title', 'Click to view the whole story')
+		.click(function(){
+			window.location = window.location + '#hero_full_story';
+			$('#hero_full_story').modal('show');
+		});
+	}
+	
+
 	//tabs
 	var hero_name = $("#hero_name").html();
 	$.getJSON("/ajax/" + hero_name + "/skills", function(data) {

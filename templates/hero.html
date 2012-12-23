@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title%}{{Name}}{% endblock %}
 {% block content %}
-    <div class="hero">
-        <div class="hero_basic">
-            <div class="hero_card">
+    <div class="hero container">
+        <div class="hero_basic row">
+            <div class="hero_card span4">
                 <table>
                     <tr><td colspan="2" class="hero_name" id="hero_name">{{Name}}</td></tr>
                     <tr><td colspan="2"> <img src="../static/images/{{Name}}.png" width="256px" height="144px"></td></tr>
@@ -39,10 +39,11 @@
                     </tr>
                 </table>
             </div>
-            <div class="hero_lore">
+            <div class="hero_lore span7 offset1">
                 <h2>Lore</h2>
-                <p>{{Lore}}</p>
+                <p id='hero_lore_para'>{{Lore}}</p>
             </div>
+
         </div>
 
         <div class="hero_skills">
@@ -52,7 +53,20 @@
             </div>
 
         </div>
-
     </div>
+
+<div class="modal hide fade" id="hero_full_story">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Full Hero Story</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="" class="btn">Close</a>
+  </div>
+</div>
+
 <script type="text/javascript" src="/static/js/hero.js"></script>
 {% endblock %}
