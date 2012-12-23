@@ -3,7 +3,7 @@ import json
 import os
 from flask import Flask, render_template, request, g, redirect
 
-application = app = Flask(__name__)
+app = Flask(__name__)
 #app.config.from_envvar("DOTA2BBQ_SETTING")
 #app.config.from_pyfile(	os.path.join(os.path.dirname(__file__), os.environ['DOTA2BBQ_SETTING']))
 
