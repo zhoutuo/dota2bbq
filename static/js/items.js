@@ -15,6 +15,7 @@ $(document).ready(function() {
 				var item = data.Content[index];
 				
 				var tip = $(".item > img[src$='" + item.Name + ".png']").tooltip({
+					position: {my: "left center", at: "right center"},
 					content: setTooltip(item)
 				});
 

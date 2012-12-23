@@ -159,7 +159,7 @@ Hero Page
 
 .hero_skills img
 {
-    margin: 20px;
+    margin: 10px;
     float: left;
 }
 
@@ -233,7 +233,7 @@ Hero Page
 
 .item_attr
 {
-    color: blue;
+    color: #FF9C70;
     font-size: 15px;
 }
 

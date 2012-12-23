@@ -31,7 +31,8 @@ $(document).ready(function() {
 				var $skill_div = $("<div />");
 				$skill_div.addClass("skill");
 				$skill_div.attr("id", "skill" + i);
-				$skill_div.append("<img src='../static/images/skills/" + hero_name + "_" + (i + 1) + ".png' width='90px' height='90px' title=''>");
+				$skill_div.append("<img src='../static/images/skills/" + hero_name.toLowerCase().replace(/'/g, '').replace(/ /g, '_') + "_" +
+					skill.SkillName.toLowerCase().replace(/ /g, '_').replace(/'/g, '').replace(/\?/g, '') + ".png' width='128px' height='128px' title=''>");
 				$skill_div.append("<p>" + skill.Description + "</p>");
 				$tabs.append($skill_div);
 			}
