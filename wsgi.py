@@ -4,8 +4,8 @@ import os
 from flask import Flask, render_template, request, g, redirect
 
 app = Flask(__name__)
-#app.config.from_envvar("DOTA2BBQ_SETTING")
-#app.config.from_pyfile(	os.path.join(os.path.dirname(__file__), os.environ['DOTA2BBQ_SETTING']))
+app.config.from_pyfile(os.path.join(
+	os.path.dirname(__file__), os.environ['DOTA2BBQ_SETTING']))
 
 
 @app.before_request
@@ -197,7 +197,8 @@ def skills_edit(hero_name):
 
 
 def connect_db():
-	return sqlite3.connect('./Dota2BBQ.db')
+	return sqlite3.connect(os.path.join(
+		os.path.dirname(__file__), app.config['DATABASE']))
 
 
 def query_db(query, args=(), one=False):
