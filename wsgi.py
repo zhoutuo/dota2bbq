@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, g, redirect
 
 app = Flask(__name__)
 app.config.from_pyfile(os.path.join(
-	os.path.dirname(__file__), os.environ['DOTA2BBQ_SETTING']))
+	os.path.dirname(__file__), "./setting.py"))
 
 
 @app.before_request
