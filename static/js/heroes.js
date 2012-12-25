@@ -1,8 +1,5 @@
 
 $(document).ready(function(){
-
-	$(".nav").eq(0).children('li').removeClass('active').eq(2).addClass('active');
-
 	$(".faction a")
 	.each(function(){
 		$(this).children("img").eq(0).attr("title", $(this).attr("href").split("/")[2]);

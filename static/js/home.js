@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-    $(".nav").eq(0).children('li').removeClass('active').eq(0).addClass('active');
-
     $.getJSON("/ajax/combined", function(data){
     $( "#search_input" ).autocomplete({
         minLength:2,

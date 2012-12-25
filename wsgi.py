@@ -1,8 +1,11 @@
 import sqlite3
 import json
+import hashlib
+import hmac
 import os
-from flask import Flask, render_template, request, g, redirect
+from flask import Flask, render_template, request, g, redirect, session, url_for
 
+SALT = "DOTA2"
 app = Flask(__name__)
 app.config.from_pyfile(os.path.join(
 	os.path.dirname(__file__), "./setting.py"))
@@ -18,37 +21,21 @@ def teardown_request(exception):
 	g.db.close()
 
 
+
+
 @app.route('/')
 def index():
-	return render_template("index.html")
+	return render_template("index.html", **generate_base_arg())
 
 
 @app.route('/heroes')
 def heroes():
-	return render_template("heroes.html")
+	return render_template("heroes.html", **generate_base_arg())
 
 
 @app.route('/items')
 def items():
-	return render_template("items.html")
-
-
-@app.route('/hero/<hero_name>')
-def hero(hero_name):
-	entry = query_db(
-		"""SELECT Heroes.[Name], Factions.[Name] AS Faction, Classes.[Name] AS Class,
-		Lore, BasicStr, BasicAgi, BasicInt, StrInc, AgiInc, IntInc,
-		Movement, Armor, MinDamage, MaxDamage
-		FROM Heroes, Classes, Factions
-		WHERE Heroes.[Name] = ? AND Classes.[Index] = Heroes.[Class]
-		AND Factions.[Index] = Heroes.[Faction]
-		LIMIT 1""",
-		[hero_name], one=True)
-
-	if entry == None:
-		return redirect('/hero/' + hero_name + "/_edit")
-	else:
-		return render_template("hero.html", **entry)
+	return render_template("items.html", **generate_base_arg())
 
 
 @app.route('/ajax/combined')
@@ -100,6 +87,41 @@ def item_feed():
 		item = {"Result": "OK", "Content": item}
 	return json.dumps(item)
 
+
+@app.route('/hero/<hero_name>')
+def hero(hero_name):
+	entry = query_db(
+		"""SELECT Heroes.[Name], Factions.[Name] AS Faction, Classes.[Name] AS Class,
+		Lore, BasicStr, BasicAgi, BasicInt, StrInc, AgiInc, IntInc,
+		Movement, Armor, MinDamage, MaxDamage
+		FROM Heroes, Classes, Factions
+		WHERE Heroes.[Name] = ? AND Classes.[Index] = Heroes.[Class]
+		AND Factions.[Index] = Heroes.[Faction]
+		LIMIT 1""",
+		[hero_name], one=True)
+
+	if entry == None:
+		return redirect('/hero/' + hero_name + "/_edit")
+	else:
+		entry.update(generate_base_arg())
+		return render_template("hero.html", **entry)
+
+@app.route('/signin', methods=['POST'])
+def signin():
+	username = request.form['username']
+	password = request.form['password']
+	entry = query_db("SELECT Password FROM Users WHERE Username = ?", (username, ), one=True)
+	if entry:
+		hashed = hmac.new(SALT, password, hashlib.sha1)
+		if hashed.hexdigest() == entry['Password']:
+			session['username'] = username
+		else:
+			session['login_error'] = 'wrong password'
+	else:
+		session['login_error'] = 'no such user'
+
+	return redirect(request.referrer) if request.referrer else redirect(url_for('index'))
+		
 
 @app.route('/hero/<hero_name>/_edit', methods=['GET', 'POST'])
 def hero_edit(hero_name):
@@ -206,6 +228,17 @@ def query_db(query, args=(), one=False):
 	rv = [dict((cur.description[idx][0], value)
 		for idx, value in enumerate(row)) for row in cur.fetchall()]
 	return (rv[0] if rv else None) if one else rv
+
+
+def generate_base_arg():
+	logged = None
+	error = None
+	if 'username' in session:
+		logged = True
+	elif 'login_error' in session:
+		error = session['login_error']
+		session.pop('login_error', None)
+	return dict(logged = logged, error = error)
 
 if __name__ == '__main__':
 	app.run()

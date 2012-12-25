@@ -22,14 +22,6 @@ h2, h3
     padding-left: 200px;
 }
 
-#isEditable
-{
-    visibility: hidden;
-}
-
-
-
-
 #content
 {
     width: 1100px;

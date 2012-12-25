@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" >
     <link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.9.2.custom.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <script src="/static/js/jquery-1.8.3.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/jquery-ui-1.9.2.custom.min.js"></script>
 </head>
 <body>
 <header>
@@ -22,17 +19,46 @@
                 <li><a href="/heroes">Heroes</a></li>
                 <li class="divider-vertical"></li>
                 <li><a href="/items">Items</a></li>
-                <li class="divider-vertical"></li>
-                <li><a href="" id="isEditable">Edit</a></li>
             </ul>
+            {% if logged == None %}
+            <form class="navbar-form pull-right" id='sign_in' action='/signin' method='post' onsubmit='return validate(this)'>
+                {% if error %}
+                <span class="inline text-error">{{error}}</span>
+                {% endif %}
+                <input type="text" placeholder="Username" name='username' id="aaaa" required>
+                <input type="password" placeholder="Password" name='password' required>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+            {% else %}
+            <form class="navbar-form pull-right" id='sign_off' action='/signoff' method='post' onsubmit='return validate(this)'>
+                <button type="submit" class="btn">Sign Off</button>
+            </form>
+            {% endif %}
         </div>
     </nav>
+    <div class="modal hide fade" id='login_result'>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Result</h3>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
 </header>
 
 <div id="content">
     {% block content %}{% endblock %}
 </div>
 
-
+<script src="/static/js/jquery-1.8.3.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/static/js/base.js"></script>
+{% block scripts %}
+{% endblock %}
 </body>
 </html>
