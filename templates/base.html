@@ -20,23 +20,25 @@
                 <li class="divider-vertical"></li>
                 <li><a href="/items">Items</a></li>
             </ul>
-            {% if logged == None %}
-            <form class="navbar-form pull-right" id='sign_in' action='/signin' method='post' onsubmit='return validate(this)'>
-                {% if error %}
-                <span class="inline text-error">{{error}}</span>
-                {% endif %}
+            {% if username == None %}
+            <form class="navbar-form pull-right" id='sign_in' action='/signin' method='post'>
                 <input type="text" placeholder="Username" name='username' id="aaaa" required>
                 <input type="password" placeholder="Password" name='password' required>
                 <button type="submit" class="btn">Sign In</button>
             </form>
+            {% if error %}
+            <label class="navbar-text pull-right">{{error}}&nbsp&nbsp&nbsp</label>
+            {% endif %}
             {% else %}
-            <form class="navbar-form pull-right" id='sign_off' action='/signoff' method='post' onsubmit='return validate(this)'>
+            <form class="navbar-form pull-right" id='sign_off' action='/signoff' method='post'>
                 <button type="submit" class="btn">Sign Off</button>
             </form>
+            <button class="btn pull-right" id='edit_btn'>Edit</button>
+            <label class="navbar-text pull-right">Username: {{username}}&nbsp&nbsp&nbsp</label>
             {% endif %}
         </div>
     </nav>
-    <div class="modal hide fade" id='login_result'>
+    <div class="modal hide fade" id='result_window'>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Result</h3>

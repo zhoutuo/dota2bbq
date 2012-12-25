@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import os
 from flask import Flask, render_template, request, g, redirect, session, url_for
+from functools import wraps
 
 SALT = "DOTA2"
 app = Flask(__name__)
@@ -21,6 +22,14 @@ def teardown_request(exception):
 	g.db.close()
 
 
+def login_required(f):
+	@wraps(f)
+	def decorated_function(*args, **kwargs):
+		if 'username' not in session:
+			return 'you have no right to edit this page'
+		else:
+			return f(*args, **kwargs)
+	return decorated_function
 
 
 @app.route('/')
@@ -106,6 +115,7 @@ def hero(hero_name):
 		entry.update(generate_base_arg())
 		return render_template("hero.html", **entry)
 
+
 @app.route('/signin', methods=['POST'])
 def signin():
 	username = request.form['username']
@@ -121,9 +131,16 @@ def signin():
 		session['login_error'] = 'no such user'
 
 	return redirect(request.referrer) if request.referrer else redirect(url_for('index'))
-		
+
+
+@app.route('/signoff', methods=['POST'])
+def signoff():
+	session.pop('username', None)
+	return redirect(request.referrer) if request.referrer else redirect(url_for('index'))
+
 
 @app.route('/hero/<hero_name>/_edit', methods=['GET', 'POST'])
+@login_required
 def hero_edit(hero_name):
 	#retrive info editable info to client
 	if request.method == 'GET':
@@ -231,14 +248,14 @@ def query_db(query, args=(), one=False):
 
 
 def generate_base_arg():
-	logged = None
+	username = None
 	error = None
 	if 'username' in session:
-		logged = True
+		username = session['username']
 	elif 'login_error' in session:
 		error = session['login_error']
 		session.pop('login_error', None)
-	return dict(logged = logged, error = error)
+	return dict(username = username, error = error)
 
 if __name__ == '__main__':
 	app.run()

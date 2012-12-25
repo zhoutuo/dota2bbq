@@ -11,7 +11,9 @@ $(document).ready(function() {
 			for(var index in data.Content) {
 				var item = data.Content[index];
 				
-				var tip = $(".item > img[src$='" + item.Name + ".png']").tooltip({
+				var tip = $(".item > img[src$='" + item.Name + ".png']")
+				.click(setClick)
+				.tooltip({
 					position: {my: "left center", at: "right center"},
 					content: setTooltip(item)
 				});
@@ -28,6 +30,21 @@ $(document).ready(function() {
 
 
 });
+
+function setClick(e){
+	if($(e.currentTarget).css('border-color') == 'rgb(255, 0, 0)')
+	{
+		$(e.currentTarget).css("border-color", "transparent");
+		window.location.hash = '';
+	}
+	else
+	{
+		$(".item > img").css("border-color", "transparent");
+		$(e.currentTarget).css("border-color", "rgb(255, 0, 0)");
+		window.location.hash = '#' + $(e.currentTarget).attr('src').split('/')[4].split('.')[0];
+	}
+
+}
 
 
 function setTooltip(data) {
