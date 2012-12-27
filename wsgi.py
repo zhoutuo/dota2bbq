@@ -58,7 +58,7 @@ def combined_feed():
 	return json.dumps(heroes + items)
 
 
-@app.route('/ajax/<hero_name>/<skill_index>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@app.route('/ajax/<hero_name>/<int:skill_index>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def skill_feed(hero_name, skill_index):
 	skill = dict()
 	if request.method == 'GET':

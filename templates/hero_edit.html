@@ -1,98 +1,17 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script>
-			window.onload = function(){
-				// var tmp = document.getElementById("Faction");
-				// document.getElementById("Faction_Select").value = tmp.value;
-				// tmp = document.getElementById("PrimaryAttr");
-				// document.getElementById("PrimaryAttr_Select").value = tmp.value;
-			};
-
-			function update(){
-				document.getElementById("Faction").value = document.getElementById("Faction_Select").value;
-				document.getElementById("PrimaryAttr").value = document.getElementById("PrimaryAttr_Select").value;
-				return true;
-			}
-			
-			function generateSkillSlots(number){
-				var skill_slots = document.getElementById("skill_slots");
-				skill_slots.innerHTML = "";
-				for(i = 1; i <= number; ++i){
-					var tmpDiv = document.createElement("div");
-					tmpDiv.setAttribute("id", "skill" + i);
-
-					//skill name
-					var name_label = document.createElement("label");
-					name_label.innerHTML = "Skill Name";
-					var name_input = document.createElement("input");
-					name_input.setAttribute("name", "skill" + i + "_name")
-					tmpDiv.appendChild(name_label);
-					tmpDiv.appendChild(name_input);
-
-					//skill description
-					var desc_label = document.createElement("label");
-					desc_label.innerHTML = "Description Name";
-					var desc_input = document.createElement("textarea");
-					desc_input.setAttribute("name", "skill" + i + "_desc");
-					tmpDiv.appendChild(desc_label);
-					tmpDiv.appendChild(desc_input);
-
-					//skill type
-					var type_label = document.createElement("label");
-					type_label.innerHTML = "Type";
-					var type_input = document.createElement("select");
-					type_input.setAttribute("name", "skill" + i + "_type");
-					var type_option_active = document.createElement("option");
-					type_option_active.value = "1";
-					type_option_active.innerHTML = "Active";
-
-					var type_option_passive = document.createElement("option");
-					type_option_passive.value = "0";
-					type_option_passive.innerHTML = "Passive";
-
-					type_input.appendChild(type_option_active);
-					type_input.appendChild(type_option_passive);
-					
-					tmpDiv.appendChild(type_label);
-					tmpDiv.appendChild(type_input);
-
-					//skill manacost
-					var mana_label = document.createElement("label");
-					mana_label.innerHTML = "ManaCost";
-					var mana_input = document.createElement("input");
-					mana_input.setAttribute("name", "skill" + i + "_manacost");
-
-					tmpDiv.appendChild(mana_label);
-					tmpDiv.appendChild(mana_input);
-
-					//skill cooldown
-					var cd_label = document.createElement("label");
-					cd_label.innerHTML = "Cooldown";
-					var cd_input = document.createElement("input");
-					cd_input.setAttribute("name", "skill" + i + "_cooldown");
-
-					tmpDiv.appendChild(cd_label);
-					tmpDiv.appendChild(cd_input);
-
-					skill_slots.appendChild(tmpDiv);
-				}
-			}
-
-		</script>
-	</head>
 	<body>
-		<form id="input" method="post" onsubmit="return update()">
+		<form id="input" method="post">
 			<label>Hero Name</label>
-			<input name="Name" value="{{Name}}" readonly><br>
+			<input name="Name" value="{{Name}}" id='hero_name' readonly><br>
 			<label>Faction</label>
-			<select id="Faction_Select" value='{{Faction}}'>
+			<select id="Faction_Select" name='Faction' data-select='{{Faction}}'>
 				<option value="0" >Radiant</option>
 				<option value="1">Dire</option>
 			</select>
 			<br>
 			<label>Primary Attribute</label>
-			<select id="PrimaryAttr_Select" value='{{Class}}'>
+			<select id="PrimaryAttr_Select" name="Class" data-select='{{Class}}'>
 				<option value="0">Strength</option>
 				<option value="1">Agility</option>
 				<option value="2">Intelligence</option>
@@ -127,33 +46,57 @@
 
 		<div id="skill_slots">
 			{% for skill in Skills %}
-			<form>
-				<fieldset>
-					<label>Skill Number: </label>
-					<input name='' value='{{skill.Number}}'>
-					<br>
-					<label>Skill Name: </label>
-					<input value='{{skill.SkillName}}'>
-					<br>
-					<label>Skill Description: </label>
-					<textarea cols='80' rows='4'>{{skill.Description}}</textarea>
-					<br>
-					<label>Skill Type: </label>
-					<input type='checkbox' {% if skill.Type %}checked{% endif %}> Is Active?
-					<br>
-					<label>Skill Manacost: </label>
-					<input value='{{skill.ManaCost}}'>
-					<br>
-					<label>Skill Cooldown: </label>
-					<input value='{{skill.Cooldown}}'>
-					<br>
-					<input class='update_skill' type='button' value='Update this skill'>
-					<input class='delete_skill' type='button' value='Delete this skill'>
-				</fieldset>
-			</form>
+			<fieldset>
+				<label>Skill Number: </label>
+				<input class='skill_number' value='{{skill.Number}}'>
+				<br>
+				<label>Skill Name: </label>
+				<input class='skill_name' value='{{skill.SkillName}}'>
+				<br>
+				<label>Skill Description: </label>
+				<textarea cols='80' rows='4' class='skill_desc'>{{skill.Description}}</textarea>
+				<br>
+				<label>Skill Type: </label>
+				<input class='skill_type' type='checkbox' {% if skill.Type %}checked{% endif %}> Is Active?
+				<br>
+				<label>Skill Manacost: </label>
+				<input class='skill_manacost' value='{{skill.ManaCost}}'>
+				<br>
+				<label>Skill Cooldown: </label>
+				<input class='skill_cooldown' value='{{skill.Cooldown}}'>
+				<br>
+				<button class='update_skill'>Update this skill</button>
+				<button class='delete_skill'>Delete this skill</button>
+			</fieldset>
 			{% endfor %}
 		</div>
 
-		<button>Add another skill for this hero</button>
+		
+		<form onsubmit='return false;'>
+			<fieldset>
+				<label>Skill Number: </label>
+				<input class='skill_number' required>
+				<br>
+				<label>Skill Name: </label>
+				<input class='skill_name'>
+				<br>
+				<label>Skill Description: </label>
+				<textarea cols='80' rows='4' class='skill_desc'></textarea>
+				<br>
+				<label>Skill Type: </label>
+				<input class='skill_type' type='checkbox'> Is Active?
+				<br>
+				<label>Skill Manacost: </label>
+				<input class='skill_manacost'>
+				<br>
+				<label>Skill Cooldown: </label>
+				<input class='skill_cooldown'>
+				<br>
+				<button id='create_skill'>Add another skill for this hero</button>
+			</fieldset>
+		</form>
+
+		<script src="/static/js/jquery-1.8.3.min.js"></script>
+		<script src="/static/js/hero_edit.js"></script>
 	</body>
 </html>
