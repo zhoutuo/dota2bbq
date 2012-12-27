@@ -58,16 +58,60 @@ def combined_feed():
 	return json.dumps(heroes + items)
 
 
-@app.route('/ajax/<hero_name>/<skill_index>')
+@app.route('/ajax/<hero_name>/<skill_index>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def skill_feed(hero_name, skill_index):
-	entry = query_db("""SELECT Type, Manacost, Cooldown FROM Skills
+	skill = dict()
+	if request.method == 'GET':
+		entry = query_db("""SELECT Type, Manacost, Cooldown FROM Skills
 			WHERE Skills.[HeroName] = ? AND Skills.[Number] = ?
 			LIMIT 1
-		""", [hero_name, skill_index])
-	if len(entry) == 1:
-		skill = {"Result": "OK", "Content": entry[0]}
+		""", [hero_name, skill_index], one=True)
+		if entry:
+			skill = {"Result": "OK", "Content": entry}
+		else:
+			skill = {"Result": "None"}
+	elif request.method == 'POST':
+		try:
+			g.db.execute("""INSERT INTO Skills VALUES(?, ?, ?, ?, ?, ?, ?)
+				""", (
+					hero_name,
+					skill_index,
+					request.form['skill_name'],
+					request.form['skill_desc'],
+					request.form['skill_type'],
+					request.form['skill_manacost'],
+					request.form['skill_cooldown']))
+			g.db.commit()
+			skill = {"Result": "OK", "Content": "This skill is successfully created"}
+		except sqlite3.IntegrityError as e:
+			skill = {"Result": "Failure", "Content": e.args[0]}
+	elif request.method == 'PUT':
+		c = g.db.cursor()
+		c.execute("""UPDATE Skills SET SkillName = ?, Description = ?, Type = ?, ManaCost = ?, Cooldown = ?
+			WHERE HeroName = ? AND Number = ?
+			""", (
+				request.form['skill_name'],
+				request.form['skill_desc'],
+				request.form['skill_type'],
+				request.form['skill_manacost'],
+				request.form['skill_cooldown'],
+				hero_name,
+				skill_index))
+		g.db.commit()
+		if c.rowcount == 1:
+			skill = {"Result": "OK", "Content": "This skill gets updated successfully"}
+		else:
+			skill = {"Result": "Failure", "Content": "There is no such skill"}
 	else:
-		skill = {"Result": "None"}
+		c = g.db.cursor()
+		c.execute("""DELETE FROM Skills
+			WHERE HeroName = ? AND Number = ?
+			""", (hero_name, skill_index))
+		g.db.commit()
+		if c.rowcount == 1:
+			skill = {"Result": "OK", "Content": "This skill is successfully deleted"}
+		else:
+			skill = {"Result": "Failure", "Content": "there is no such skill to be deleted"}
 	return json.dumps(skill)
 
 
@@ -163,9 +207,12 @@ def hero_edit(hero_name):
 			entry["MinDamage"] = ""
 			entry["MaxDamage"] = ""
 			entry["IsNew"] = "True"
+			entry['Skills'] = [];
 			return render_template("hero_edit.html", **entry)
 		else:
 			entry["IsNew"] = "False"
+			skills = query_db("SELECT * FROM Skills WHERE HeroName = ? ORDER BY Number ASC", (hero_name, ), one=False)
+			entry['Skills'] = skills;
 			return render_template("hero_edit.html", **entry)
 	#get edited info from client
 	else:
@@ -217,22 +264,6 @@ def hero_edit(hero_name):
 					))
 			g.db.commit()
 	return redirect("/hero/" + hero_name)
-
-
-@app.route('/hero/<hero_name>/skills_edit', methods=['GET', 'POST'])
-def skills_edit(hero_name):
-	if request.method == "GET":
-		entry = query_db("SELECT * FROM Heroes WHERE Name = ? LIMIT 1",
-			[hero_name], one=True)
-		if entry == None:
-			return "There is no such hero so that you cannot edit this hero's skills"
-		else:
-			skills = query_db("SELECT * FROM Skills WHERE HeroName = ?",
-				[hero_name], one=False)
-			if skills == None:
-				pass
-			else:
-				pass
 
 
 def connect_db():

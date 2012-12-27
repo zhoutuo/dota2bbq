@@ -3,12 +3,10 @@
 	<head>
 		<script>
 			window.onload = function(){
-				var tmp = document.getElementById("Faction");
-				document.getElementById("Faction_Select").value = tmp.value;
-				tmp = document.getElementById("PrimaryAttr");
-				document.getElementById("PrimaryAttr_Select").value = tmp.value;
-
-				generateSkillSlots(4);
+				// var tmp = document.getElementById("Faction");
+				// document.getElementById("Faction_Select").value = tmp.value;
+				// tmp = document.getElementById("PrimaryAttr");
+				// document.getElementById("PrimaryAttr_Select").value = tmp.value;
 			};
 
 			function update(){
@@ -88,17 +86,17 @@
 			<label>Hero Name</label>
 			<input name="Name" value="{{Name}}" readonly><br>
 			<label>Faction</label>
-			<select id="Faction_Select">
-				<option value="0">Radiant</option>
+			<select id="Faction_Select" value='{{Faction}}'>
+				<option value="0" >Radiant</option>
 				<option value="1">Dire</option>
-			</select><input id="Faction" name="Faction" type="hidden" value="{{Faction}}">
+			</select>
 			<br>
 			<label>Primary Attribute</label>
-			<select id="PrimaryAttr_Select">
+			<select id="PrimaryAttr_Select" value='{{Class}}'>
 				<option value="0">Strength</option>
 				<option value="1">Agility</option>
 				<option value="2">Intelligence</option>
-			</select><input id="PrimaryAttr" name="Class" type="hidden" value="{{Class}}">
+			</select>
 			<br>
 			<label>Lore</label>
 			<textarea name="Lore" rows="10" cols="100">{{Lore}}</textarea>
@@ -124,22 +122,38 @@
 			<label>Maximum Damage</label>
 			<input name="MaxDamage" value="{{MaxDamage}}"><br>
 			<input name="IsNew" type="hidden" value="{{IsNew}}">
-
-			<select id="skill_number" onchange="generateSkillSlots(this.value)">
-				<option value="4" selected>4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
-			</select>
-
-			<div id="skill_slots"></div>
-
-			<input type="submit">
+			<input type="submit" value='update stats of this hero'>
 		</form>
+
+		<div id="skill_slots">
+			{% for skill in Skills %}
+			<form>
+				<fieldset>
+					<label>Skill Number: </label>
+					<input name='' value='{{skill.Number}}'>
+					<br>
+					<label>Skill Name: </label>
+					<input value='{{skill.SkillName}}'>
+					<br>
+					<label>Skill Description: </label>
+					<textarea cols='80' rows='4'>{{skill.Description}}</textarea>
+					<br>
+					<label>Skill Type: </label>
+					<input type='checkbox' {% if skill.Type %}checked{% endif %}> Is Active?
+					<br>
+					<label>Skill Manacost: </label>
+					<input value='{{skill.ManaCost}}'>
+					<br>
+					<label>Skill Cooldown: </label>
+					<input value='{{skill.Cooldown}}'>
+					<br>
+					<input class='update_skill' type='button' value='Update this skill'>
+					<input class='delete_skill' type='button' value='Delete this skill'>
+				</fieldset>
+			</form>
+			{% endfor %}
+		</div>
+
+		<button>Add another skill for this hero</button>
 	</body>
 </html>

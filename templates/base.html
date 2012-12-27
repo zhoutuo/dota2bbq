@@ -22,19 +22,20 @@
             </ul>
             {% if username == None %}
             <form class="navbar-form pull-right" id='sign_in' action='/signin' method='post'>
-                <input type="text" placeholder="Username" name='username' id="aaaa" required>
+                {% if error %}
+                    <span class='label label-important'>{{error}}</span>
+                {% endif %}
+                <input type="text" placeholder="Username" name='username' required>
                 <input type="password" placeholder="Password" name='password' required>
                 <button type="submit" class="btn">Sign In</button>
             </form>
-            {% if error %}
-            <label class="navbar-text pull-right">{{error}}&nbsp&nbsp&nbsp</label>
-            {% endif %}
+
             {% else %}
             <form class="navbar-form pull-right" id='sign_off' action='/signoff' method='post'>
+                <span class='label'>Username: {{username}}</span>
+                <button class="button btn" id='edit_btn'>Edit</button>
                 <button type="submit" class="btn">Sign Off</button>
             </form>
-            <button class="btn pull-right" id='edit_btn'>Edit</button>
-            <label class="navbar-text pull-right">Username: {{username}}&nbsp&nbsp&nbsp</label>
             {% endif %}
         </div>
     </nav>

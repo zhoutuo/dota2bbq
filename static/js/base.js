@@ -41,5 +41,6 @@ function validate(){
 		$notification.find('p').html('This Page is not editable');
 		$notification.modal('show');
 	}
+	return false;
 }
 
