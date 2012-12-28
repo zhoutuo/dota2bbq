@@ -45,7 +45,7 @@ function filter() {
 }
 
 function sort() {
-	var cur_val = $('#sort_by_name').val();
+	var cur_val = parseInt($('#sort_by_name').val(), 10);
 	if(cur_val !== 0) {
 		$('div.hero:visible').sort(function(a, b) {
 			return cur_val * cmp($(a).data('name'), $(b).data('name'));
