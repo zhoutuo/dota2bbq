@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 	$('.delete_skill').click(function(){
 		var $container = $(this).parent();
-		var skill_num = $container.find('.skill_number').val();	
+		var skill_num = $container.find('.skill_number').val();
 		$.ajax({
 			url: '/ajax/' + hero_name + '/' + skill_num,
 			type: 'DELETE',
@@ -82,6 +82,10 @@ $(document).ready(function(){
 				alert('fails to connect to the server');
 			}
 		});
+	});
+
+	$('#close_btn').click(function(){
+		window.location = "/hero/" + hero_name;
 	});
 
 

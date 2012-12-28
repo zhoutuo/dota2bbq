@@ -18,17 +18,8 @@ function validate(){
 	{
 		if(window.location.hash !== "")
 		{
-			var item_name = window.location.hash.substring(1);
-			var item = $(".item > img[src$='" + item_name + ".png']");
-			if(item === null)
-			{
-				$notification.find('p').html('There is no such item');
-				$notification.modal('show');
-			}
-			else
-			{
-
-			}
+			var item_id = window.location.hash.substring(1);
+			window.location = '/items/' + item_id + '/_edit';
 		}
 		else
 		{

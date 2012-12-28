@@ -1,25 +1,26 @@
 $(document).ready(function() {
 	var hash = null;
-	if(window.location.hash)
-	{
+	if(window.location.hash) {
 		hash = window.location.hash.substring(1);
 	}
 
 	$.getJSON("/ajax/items", function(data) {
-		if(data.Result == "OK")
-		{
+		if(data.Result == "OK") {
 			for(var index in data.Content) {
 				var item = data.Content[index];
-				
+
 				var tip = $(".item > img[src$='" + item.Name + ".png']")
+				.data('id', item.IID)
 				.click(setClick)
 				.tooltip({
-					position: {my: "left center", at: "right center"},
+					position: {
+						my: "left center",
+						at: "right center"
+					},
 					content: setTooltip(item)
 				});
 
-				if(hash == item.Name)
-				{
+				if(hash == item.IID) {
 					tip.css("border-color", "red").tooltip('open');
 				}
 			}
@@ -31,49 +32,35 @@ $(document).ready(function() {
 
 });
 
-function setClick(e){
-	if($(e.currentTarget).css('border-color') == 'rgb(255, 0, 0)')
-	{
+function setClick(e) {
+	if($(e.currentTarget).css('border-color') == 'rgb(255, 0, 0)') {
 		$(e.currentTarget).css("border-color", "transparent");
 		window.location.hash = '';
-	}
-	else
-	{
+	} else {
 		$(".item > img").css("border-color", "transparent");
 		$(e.currentTarget).css("border-color", "rgb(255, 0, 0)");
-		window.location.hash = '#' + $(e.currentTarget).attr('src').split('/')[4].split('.')[0];
+		window.location.hash = '#' + $(e.currentTarget).data('id');
 	}
 
 }
 
 
 function setTooltip(data) {
-	var $display_div = $("<div/>")
-	.addClass("item_tooltip")
-	.append("<span>" + data.Name + "</span>");
+	var $display_div = $("<div/>").addClass("item_tooltip").append("<span>" + data.Name + "</span>");
 
-	var $cost_span = $("<span/>")
-	.append("<img src='../static/images/items/gold.png'>")
-	.append(" " + data.Cost)
-	.addClass("item_cost");
+	var $cost_span = $("<span/>").append("<img src='/static/images/items/gold.png'>").append(" " + data.Cost).addClass("item_cost");
 	$display_div.append($cost_span);
 
-	if(data.Usage !== null)
-	{
-		$("<div/>").html(data.Usage)
-		.addClass("item_usage")
-		.appendTo($display_div);
+	if(data.Usage !== null) {
+		$("<div/>").html(data.Usage).addClass("item_usage").appendTo($display_div);
 	}
 
-	if(data.Attributes !== null)
-	{
+	if(data.Attributes !== null) {
 		var attrs = data.Attributes.split("/");
 		var $attrs_div = $("<div />").addClass("item_attr");
-		for(var i = 0; i < attrs.length; ++i)
-		{
+		for(var i = 0; i < attrs.length; ++i) {
 			$attrs_div.append(attrs[i]);
-			if(i != attrs.length - 1)
-			{
+			if(i != attrs.length - 1) {
 				$attrs_div.append("<br>");
 			}
 
@@ -81,20 +68,16 @@ function setTooltip(data) {
 		$display_div.append($attrs_div);
 	}
 
-	if(data.Recipe !== null)
-	{
+	if(data.Recipe !== null) {
 		var items = data.Recipe.split("/");
 		var $recipe_div = $("<div>Recipe:<br></div>");
-		for(var index in items)
-		{
-			$recipe_div.append("<img src=\"../static/images/items/" + items[index] + ".png\" width='85px' height='64px'>");
+		for(var index in items) {
+			$recipe_div.append("<img src=\"/static/images/items/" + items[index] + ".png\" width='85px' height='64px'>");
 		}
 		$display_div.append($recipe_div);
 	}
 
-	$("<div/>").html(data.Description)
-	.addClass("item_description")
-	.appendTo($display_div);
+	$("<div/>").html(data.Description).addClass("item_description").appendTo($display_div);
 
 
 	var $container = $("<div />");

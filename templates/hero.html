@@ -49,7 +49,15 @@
         <div class="hero_skills">
             <div id="skill_tabs">
                 <ul>
+                    {% for skill in skills %}
+                        <li><a href='#skill{{skill.Number}}'>{{skill.SkillName}}</a></li>
+                    {% endfor %}
                 </ul>
+                {% for skill in skills %}
+                    <div id='skill{{skill.Number}}' class='skill' data-src='{{skill.HeroName}}_{{skill.SkillName}}'>
+                        <p>{{skill.Description}}</p>
+                    </div>
+                {% endfor %}
             </div>
 
         </div>

@@ -3,7 +3,7 @@ import json
 import hashlib
 import hmac
 import os
-from flask import Flask, render_template, request, g, redirect, session, url_for
+from flask import Flask, render_template, request, g, redirect, session, url_for, abort
 from functools import wraps
 
 SALT = "DOTA2"
@@ -52,9 +52,9 @@ def combined_feed():
 	query = g.db.execute("""SELECT Heroes.[Name]
 		FROM Heroes""").fetchall()
 	heroes = [{'Name': row[0], 'Class': "Hero"} for row in query]
-	query = g.db.execute("""SELECT Items.[Name]
+	query = g.db.execute("""SELECT IID, Name
 		FROM Items""").fetchall()
-	items = [{'Name': row[0], 'Class': "Item"} for row in query]
+	items = [{'ID': row[0],'Name': row[1], 'Class': "Item"} for row in query]
 	return json.dumps(heroes + items)
 
 
@@ -115,20 +115,6 @@ def skill_feed(hero_name, skill_index):
 	return json.dumps(skill)
 
 
-@app.route("/ajax/<hero_name>/skills")
-def skills_feed(hero_name):
-	skills = query_db(
-		"""	SELECT SkillName, Description FROM Skills
-			WHERE Skills.[HeroName] = ?
-			ORDER BY Number ASC
-		""", [hero_name], one=False)
-	if len(skills) == 0:
-		skills = {"Result": "None"}
-	else:
-		skills = {"Result": "OK", "Content": skills}
-	return json.dumps(skills)
-
-
 @app.route("/ajax/items")
 def item_feed():
 	item = query_db(
@@ -156,6 +142,12 @@ def hero(hero_name):
 	if entry == None:
 		return redirect('/hero/' + hero_name + "/_edit")
 	else:
+		skills = query_db(
+			"""	SELECT * FROM Skills
+				WHERE HeroName = ?
+				ORDER BY Number ASC
+			""", [hero_name], one=False)
+		entry["skills"] = skills;
 		entry.update(generate_base_arg())
 		return render_template("hero.html", **entry)
 
@@ -264,6 +256,33 @@ def hero_edit(hero_name):
 					))
 			g.db.commit()
 	return redirect("/hero/" + hero_name)
+
+
+@app.route('/items/<int:item_id>/_edit', methods=['GET', 'POST'])
+@login_required
+def item_edit(item_id):
+	if request.method == 'GET':
+		entry = query_db("""SELECT * FROM Items WHERE IID = ?""", (item_id, ), one=True)
+		if entry:
+			return render_template('item_edit.html', **entry);
+		else:
+			abort(404)
+	else:
+		c = g.db.cursor()
+		c.execute("""UPDATE Items set Description = ?, Cost = ?, Usage = ?, Attributes = ?, Recipe = ?
+			WHERE IID = ?""", (
+				request.form['Description'],
+				request.form['Cost'],
+				request.form['Usage'],
+				request.form['Attributes'],
+				request.form['Recipe'],
+				request.form['IID']
+				))
+		g.db.commit()
+		return redirect(url_for('items'));
+
+
+
 
 
 def connect_db():
