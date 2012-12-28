@@ -39,7 +39,10 @@ def index():
 
 @app.route('/heroes')
 def heroes():
-	return render_template("heroes.html", **generate_base_arg())
+	heroes = query_db("SELECT Name, Faction, Class FROM Heroes", [], one=False)
+	entry = {'heroes': heroes}
+	entry.update(generate_base_arg());
+	return render_template("heroes.html", **entry)
 
 
 @app.route('/items')

@@ -52,6 +52,11 @@ h2, h3
 Heroes Page
 */
 
+.hero_browse .text-info
+{
+    font-size: 20px;
+}
+
 .box-top
 {
     background-image: url('/static/images/redborderbox_top.png');
@@ -66,7 +71,13 @@ Heroes Page
     background-position: center center;
 }
 
-.faction img
+
+.hero
+{
+    float: left;
+}
+
+.hero_browse img
 {
     border: 1px solid black;
 }
