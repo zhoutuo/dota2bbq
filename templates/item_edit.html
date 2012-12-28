@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<form method='post'>
+			<label>Item Index:</label>
+			<input readonly value='{{IID}}' name='IID'>
+			<br>
+			<label>Item Name:</label>
+			<input value='{{Name}}' name='Name'>
+			<br>
+			<label>Item Description:</label>
+			<textarea cols='80' name='Description'>{{Description}}</textarea>
+			<br>
+			<label>Item Cost:</label>
+			<input value='{{Cost}}' name='Cost'>
+			<br>
+			<label>Item Usage:</label>
+			<textarea cols='80' name='Usage'>{{Usage}}</textarea>
+			<br>
+			<label>Item Attributes:</label>
+			<textarea cols='80' name='Attributes'>{{Attributes}}</textarea>
+			<br>
+			<label>Item Recipe:</label>
+			<input size='30' value='{{Recipe}}' name='Recipe'>
+			<br>
+			<input type='submit'>
+		</form>
+		<script src="/static/js/jquery-1.8.3.min.js"></script>
+		<script src="/static/js/item_edit.js"></script>
+	</body>
+</html>
