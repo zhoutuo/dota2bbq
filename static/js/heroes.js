@@ -13,8 +13,23 @@ $(document).ready(function() {
 	$('#filter_by_faction').change(filter);
 	$('#filter_by_name').keyup(delayNameFiltering);
 	$('#sort_by_name').change(sort);
+	$('.hero_browse')
+	.sortable(
+		{
+			revert: true,
+			connectWith: '#dustbin'
+		});
 
-	$('.hero_browse').sortable({revert: true});
+	$('#dustbin')
+	.sortable({
+			receive: function(event, ui){
+				$(ui.item).remove();
+				$('#dustbin > h1').show();
+			},
+			over: function(event, ui){
+				$('#dustbin > h1').hide();
+			}
+});
 
 });
 
@@ -42,9 +57,13 @@ function filter() {
 function sort() {
 	var cur_val = parseInt($('#sort_by_name').val(), 10);
 	if(cur_val !== 0) {
-		$('div.hero:visible').sort(function(a, b) {
+		$('div.hero:visible')
+		.hide()
+		.sort(function(a, b) {
 			return cur_val * cmp($(a).data('name'), $(b).data('name'));
-		}).appendTo($('.hero_browse'));
+		})
+		.appendTo($('.hero_browse'))
+		.show('fast');
 	}
 }
 

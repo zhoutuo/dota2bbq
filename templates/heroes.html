@@ -5,27 +5,25 @@
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Reminder!</strong> Move hero icons around as your will.
 </div>
+<select id='filter_by_class'>
+    <option value='3'>Filter By Class</option>
+    <option value='0'>Strength</option>
+    <option value='1'>Agility</option>
+    <option value='2'>Intelligence</option>
+</select>
+<select id='filter_by_faction'>
+    <option value='3'>Filter By Faction</option>
+    <option value='0'>Radient</option>
+    <option value='1'>Dire</option>
+</select> 
+<input id='filter_by_name' type='text' placeholder='Filter By Name'>
+<select id='sort_by_name'>
+    <option value='0'>Sort By Name</option>
+    <option value='-1'>Ascending</option>
+    <option value='1'>Descending</option>
+</select> 
 <div class='hero_browse'>
-        <select id='filter_by_class'>
-            <option value='3'>Filter By Class</option>
-            <option value='0'>Strength</option>
-            <option value='1'>Agility</option>
-            <option value='2'>Intelligence</option>
-        </select>
-        <select id='filter_by_faction'>
-            <option value='3'>Filter By Faction</option>
-            <option value='0'>Radient</option>
-            <option value='1'>Dire</option>
-        </select> 
-        <input id='filter_by_name' type='text' placeholder='Filter By Name'>
-        <select id='sort_by_name'>
-            <option value='0'>Sort By Name</option>
-            <option value='-1'>Ascending</option>
-            <option value='1'>Descending</option>
-        </select> 
-        <br>
         {% for hero in heroes %}
-
         <div class='hero' data-faction='3 {{hero.Faction}}' data-class='3 {{hero.Class}}' data-name='all {{hero.Name.lower()}}'>
             <a href="/hero/{{hero.Name}}">
                 <img src="/static/images/128px-{{hero.Name.lower().replace(' ', '_')}}.png"
@@ -36,10 +34,12 @@
         </div>
         {% endfor %}
 </div>
+<div id='dustbin' class='container'>
+    <h1>Drop icon here to remove it!</h1>
+</div>
 
 
 {% endblock %}
-
 {% block scripts %}
 <script type="text/javascript" src="/static/js/heroes.js"></script>
 {% endblock %}

@@ -20,7 +20,9 @@ $(document).ready(function() {
 				});
 
 				if(hash == item.IID) {
-					tip.css("border-color", "red").tooltip('open');
+					tip
+					.css("border-color", "red")
+					.tooltip('open');
 				}
 			}
 
@@ -45,9 +47,14 @@ function setClick(e) {
 
 
 function setTooltip(data) {
-	var $display_div = $("<div/>").addClass("item_tooltip").append("<span>" + data.Name + "</span>");
+	var $display_div = $("<div/>")
+	.addClass("item_tooltip")
+	.append("<span>" + data.Name + "</span>");
 
-	var $cost_span = $("<span/>").append("<img src='/static/images/items/gold.png'>").append(" " + data.Cost).addClass("item_cost");
+	var $cost_span = $("<span/>")
+	.append("<img src='/static/images/items/gold.png'>")
+	.append(" " + data.Cost)
+	.addClass("item_cost");
 	$display_div.append($cost_span);
 
 	if(data.Usage !== null) {
@@ -73,9 +80,14 @@ function setTooltip(data) {
 		$display_div.append($recipe_div);
 	}
 
-	$("<div/>").html(data.Description).addClass("item_description").appendTo($display_div);
+	$("<div/>")
+	.html(data.Description)
+	.addClass("item_description")
+	.appendTo($display_div);
 
 
 	var $container = $("<div />");
-	return $container.append($display_div).html();
+	return $container
+	.append($display_div)
+	.html();
 }
