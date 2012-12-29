@@ -14,22 +14,18 @@ $(document).ready(function() {
 	$('#filter_by_name').keyup(delayNameFiltering);
 	$('#sort_by_name').change(sort);
 	$('.hero_browse')
-	.sortable(
-		{
-			revert: true,
-			connectWith: '#dustbin'
-		});
+	.sortable({containment: '#content'});
 
-	$('#dustbin')
-	.sortable({
-			receive: function(event, ui){
-				$(ui.item).remove();
-				$('#dustbin > h1').show();
-			},
-			over: function(event, ui){
-				$('#dustbin > h1').hide();
-			}
-});
+	$('#dustbin').droppable({
+        drop : function(event, ui) {
+            $(ui.draggable).remove();
+            $(this).children('h1').show();
+        },
+        over: function( event, ui ) {
+			$(this).children('h1').hide();
+        }
+
+    });
 
 });
 
