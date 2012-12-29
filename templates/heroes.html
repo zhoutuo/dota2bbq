@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Heroes{% endblock %}
 {% block content %}
-
+<div class="alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Reminder!</strong> Move hero icons around as your will.
+</div>
 <div class='hero_browse'>
         <select id='filter_by_class'>
-            <option value='-1'>Filter By Class</option>
+            <option value='3'>Filter By Class</option>
             <option value='0'>Strength</option>
             <option value='1'>Agility</option>
             <option value='2'>Intelligence</option>
         </select>
         <select id='filter_by_faction'>
-            <option value='-1'>Filter By Faction</option>
+            <option value='3'>Filter By Faction</option>
             <option value='0'>Radient</option>
             <option value='1'>Dire</option>
         </select> 
@@ -23,11 +26,13 @@
         <br>
         {% for hero in heroes %}
 
-        <div class='hero' data-faction='-1 {{hero.Faction}}' data-class='-1 {{hero.Class}}' data-name='all {{hero.Name.lower()}}'>
+        <div class='hero' data-faction='3 {{hero.Faction}}' data-class='3 {{hero.Class}}' data-name='all {{hero.Name.lower()}}'>
             <a href="/hero/{{hero.Name}}">
                 <img src="/static/images/128px-{{hero.Name.lower().replace(' ', '_')}}.png"
-                width="128px" height="72px" title='{{hero.Name}}'>
+                width="128px" height="72px">
+                <span>{{hero.Name}}</span>
             </a>
+
         </div>
         {% endfor %}
 </div>

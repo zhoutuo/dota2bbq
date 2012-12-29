@@ -75,11 +75,22 @@ Heroes Page
 .hero
 {
     float: left;
+    position: relative;
 }
 
-.hero_browse img
+.hero img
 {
     border: 1px solid black;
+}
+
+.hero span
+{
+    position: absolute;
+    top: 55px;
+    left: 5px;
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-size: 12px;
 }
 
 

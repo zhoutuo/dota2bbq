@@ -11,8 +11,7 @@ $(document).ready(function() {
 
 				var tip = $(".item > img[src$='" + item.Name + ".png']")
 				.data('id', item.IID)
-				.click(setClick)
-				.tooltip({
+				.click(setClick).tooltip({
 					position: {
 						my: "left center",
 						at: "right center"
@@ -52,23 +51,20 @@ function setTooltip(data) {
 	$display_div.append($cost_span);
 
 	if(data.Usage !== null) {
-		$("<div/>").html(data.Usage).addClass("item_usage").appendTo($display_div);
+		$("<div/>")
+		.html(data.Usage.replace(/\n/g, '<br>'))
+		.addClass("item_usage")
+		.appendTo($display_div);
 	}
 
 	if(data.Attributes !== null) {
-		var attrs = data.Attributes.split("/");
-		var $attrs_div = $("<div />").addClass("item_attr");
-		for(var i = 0; i < attrs.length; ++i) {
-			$attrs_div.append(attrs[i]);
-			if(i != attrs.length - 1) {
-				$attrs_div.append("<br>");
-			}
-
-		}
+		var $attrs_div = $("<div />")
+		.html(data.Attributes.replace(/\n/g, '<br>'))
+		.addClass("item_attr");
 		$display_div.append($attrs_div);
 	}
 
-	if(data.Recipe !== null) {
+	if(data.Recipe !== "") {
 		var items = data.Recipe.split("/");
 		var $recipe_div = $("<div>Recipe:<br></div>");
 		for(var index in items) {

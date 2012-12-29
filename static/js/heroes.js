@@ -9,17 +9,12 @@ $(document).ready(function() {
 		$(e.currentTarget).children("img").css("border-color", "black");
 	});
 
-	$(document).tooltip({
-		position: {
-			my: "center top",
-			at: "center bottom"
-		}
-	});
-
 	$('#filter_by_class').change(filter);
 	$('#filter_by_faction').change(filter);
 	$('#filter_by_name').keyup(delayNameFiltering);
 	$('#sort_by_name').change(sort);
+
+	$('.hero_browse').sortable({revert: true});
 
 });
 
