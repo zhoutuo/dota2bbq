@@ -22,23 +22,23 @@ $(document).ready(function() {
 	.each(function(){
 		$('<img>')
 		.attr('src', "/static/images/skills/" +
-			$(this).data("src").toLowerCase().replace(/ /g, '_').replace(/'/g, '').replace(/\?/g, '') +
+			($(this).data("hero") + '_' + $(this).data('skill'))
+			.toLowerCase().replace(/ /g, '_').replace(/'/g, '').replace(/\?/g, '') +
 			'.png')
 		.width('128px')
 		.height('128px')
 		.attr('title', '')
 		.prependTo($(this));
-	})
-	.tooltip({
+	});
+	$(".skill").tooltip({
 		position: {
 			my: "right center",
 			at: "left center",
 			offset: "-20"
 		},
 		content: function(t) {
-			var tmp = $(this).attr("src").split("/")[4];
-			var hero_name = tmp.split("_")[0];
-			var skill_index = $(this).parent().attr('id').substring(5);
+			var hero_name = $(this).parent().data('hero');
+			var skill_index = $(this).parent().data('index');
 
 			$.getJSON("/ajax/" + hero_name + "/" + skill_index, function(data) {
 				if(data.Result == "OK") {

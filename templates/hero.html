@@ -54,7 +54,8 @@
                     {% endfor %}
                 </ul>
                 {% for skill in skills %}
-                    <div id='skill{{skill.Number}}' class='skill' data-src='{{skill.HeroName}}_{{skill.SkillName}}'>
+                    <div id='skill{{skill.Number}}' class='skill'
+                    data-hero='{{skill.HeroName}}' data-skill='{{skill.SkillName}}' data-index='{{skill.Number}}'>
                         <p>{{skill.Description}}</p>
                     </div>
                 {% endfor %}
